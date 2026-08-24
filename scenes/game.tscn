@@ -70,7 +70,7 @@ animations = [{
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2100240362]
 anchor_mode = 0
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=2011802130]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2011802130 groups=["Player"]]
 script = ExtResource("1_lnu2h")
 metadata/_custom_type_script = "uid://tp0neh703trp"
 
