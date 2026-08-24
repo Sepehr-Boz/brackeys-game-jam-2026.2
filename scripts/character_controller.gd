@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var _walk_speed: float = 400
 @export var _run_speed: float = 600
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
 var _is_sprinting: bool = false
 
 func _ready() -> void:
@@ -30,6 +31,13 @@ func set_animation() -> void:
 			_sprite.flip_h = true
 		elif velocity.x > 0:
 			_sprite.flip_h = false
+
+func _process(delta: float) -> void:
+	# clamp the position so that the character is within the viewport at all times
+	position = Vector2(
+		clampf(position.x, _vp.position.x, _vp.end.x),
+		clampf(position.y, _vp.position.y, _vp.end.y)
+	)
 
 func _physics_process(delta) -> void:
 	# move and apply physics
