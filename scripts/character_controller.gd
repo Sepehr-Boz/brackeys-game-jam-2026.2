@@ -7,8 +7,12 @@ extends Area2D
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
 var _is_sprinting: bool = false
 var velocity: Vector2
+var _can_control: bool = true
 
 func _ready() -> void:
+	GameManager.player_hit.connect(_lost_level)
+	GameManager.player_safe.connect(_won_level)
+	
 	_sprite.play()
 
 func get_move_input() -> void:
@@ -34,6 +38,8 @@ func set_animation() -> void:
 			_sprite.flip_h = false
 
 func _process(delta: float) -> void:
+	if not _can_control:
+		return
 	get_move_input()
 	position += velocity * delta
 	# clamp the position so that the character is within the viewport at all times
@@ -42,3 +48,13 @@ func _process(delta: float) -> void:
 		clampf(position.y, _vp.position.y, _vp.end.y)
 	)
 	set_animation()
+
+func _lost_level() -> void:
+	velocity = Vector2.ZERO
+	_can_control = false
+	_sprite.animation = "hit"
+
+func _won_level() -> void:
+	velocity = Vector2.ZERO
+	_can_control = false
+	_sprite.animation = "victory"

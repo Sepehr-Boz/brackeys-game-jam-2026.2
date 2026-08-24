@@ -1,23 +1,6 @@
 [gd_scene format=3 uid="uid://x6fubc7jrr8s"]
 
-[ext_resource type="PackedScene" uid="uid://djisv5pjypimb" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://dykb72uq250po" path="res://scenes/npc.tscn" id="2_yqjtg"]
-
 [node name="Node2D" type="Node2D" unique_id=809113781]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2100240362]
 anchor_mode = 0
-
-[node name="Player" parent="." unique_id=1508327598 instance=ExtResource("1_uwrxv")]
-
-[node name="NPC" parent="." unique_id=1525424875 instance=ExtResource("2_yqjtg")]
-
-[node name="NPC2" parent="." unique_id=167078139 instance=ExtResource("2_yqjtg")]
-
-[node name="NPC3" parent="." unique_id=1489348151 instance=ExtResource("2_yqjtg")]
-
-[node name="NPC4" parent="." unique_id=1930911200 instance=ExtResource("2_yqjtg")]
-
-[node name="NPC5" parent="." unique_id=1950890330 instance=ExtResource("2_yqjtg")]
-
-[node name="NPC6" parent="." unique_id=1198641887 instance=ExtResource("2_yqjtg")]

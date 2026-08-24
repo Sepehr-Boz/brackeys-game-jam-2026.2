@@ -15,10 +15,20 @@ run/main_scene="uid://x6fubc7jrr8s"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*uid://cxc0xacmqfpok"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+Enemy=""
+Player=""
+Bullet=""
 
 [input]
 
