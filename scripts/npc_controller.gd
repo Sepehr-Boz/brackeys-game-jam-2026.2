@@ -2,6 +2,7 @@ class_name NPCController2D
 extends Area2D
 
 @export var _walk_speed: float = 400
+@export var _animations: Array[SpriteFrames] = []
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
 @onready var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -9,6 +10,8 @@ var _is_sprinting: bool = false
 var velocity: Vector2
 
 func _ready() -> void:
+	# set a random spriteframe onto the sprite and play it
+	_sprite.sprite_frames = _animations[_rng.randi_range(0, len(_animations) - 1)]
 	_sprite.play()
 	# on start spawn at random position (in screen) and move in random direction
 	position = Vector2(

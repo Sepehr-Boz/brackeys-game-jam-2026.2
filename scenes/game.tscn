@@ -1,79 +1,23 @@
 [gd_scene format=3 uid="uid://x6fubc7jrr8s"]
 
-[ext_resource type="Script" uid="uid://tp0neh703trp" path="res://scripts/character_controller.gd" id="1_lnu2h"]
-[ext_resource type="SpriteFrames" uid="uid://b2er2nm50qo8l" path="res://animations/character_green.tres" id="2_u5sy4"]
-[ext_resource type="SpriteFrames" uid="uid://wn66hd4sjtuq" path="res://animations/character_pink.tres" id="4_gee14"]
-[ext_resource type="SpriteFrames" uid="uid://tmklteewxqpg" path="res://animations/character_purple.tres" id="5_0tnpc"]
-[ext_resource type="SpriteFrames" uid="uid://bf01k3j56ouun" path="res://animations/character_yellow.tres" id="6_vtaks"]
-[ext_resource type="SpriteFrames" uid="uid://c0r34ei7vgv3n" path="res://animations/character_beige.tres" id="7_kvpfn"]
-[ext_resource type="Script" uid="uid://cjh2g35ff4uhv" path="res://scripts/npc_controller.gd" id="7_u5sy4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wlwq"]
-size = Vector2(128, 128)
+[ext_resource type="PackedScene" uid="uid://djisv5pjypimb" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dykb72uq250po" path="res://scenes/npc.tscn" id="2_yqjtg"]
 
 [node name="Node2D" type="Node2D" unique_id=809113781]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2100240362]
 anchor_mode = 0
 
-[node name="Player" type="Area2D" parent="." unique_id=1787088635 groups=["Player"]]
-script = ExtResource("1_lnu2h")
+[node name="Player" parent="." unique_id=1508327598 instance=ExtResource("1_uwrxv")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1518772612]
-shape = SubResource("RectangleShape2D_0wlwq")
-disabled = true
+[node name="NPC" parent="." unique_id=1525424875 instance=ExtResource("2_yqjtg")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=561640530]
-sprite_frames = ExtResource("2_u5sy4")
-animation = &"walk"
-frame_progress = 0.32625535
+[node name="NPC2" parent="." unique_id=167078139 instance=ExtResource("2_yqjtg")]
 
-[node name="Enemy" type="Area2D" parent="." unique_id=562984114 groups=["Enemy"]]
-position = Vector2(128, 0)
-script = ExtResource("7_u5sy4")
+[node name="NPC3" parent="." unique_id=1489348151 instance=ExtResource("2_yqjtg")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=2115684513]
-shape = SubResource("RectangleShape2D_0wlwq")
-disabled = true
+[node name="NPC4" parent="." unique_id=1930911200 instance=ExtResource("2_yqjtg")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=1274760441]
-sprite_frames = ExtResource("4_gee14")
-animation = &"walk"
+[node name="NPC5" parent="." unique_id=1950890330 instance=ExtResource("2_yqjtg")]
 
-[node name="Enemy2" type="Area2D" parent="." unique_id=1894130068 groups=["Enemy"]]
-position = Vector2(256, 0)
-script = ExtResource("7_u5sy4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2" unique_id=1731312475]
-shape = SubResource("RectangleShape2D_0wlwq")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy2" unique_id=920016122]
-sprite_frames = ExtResource("5_0tnpc")
-animation = &"walk"
-frame_progress = 0.46726903
-
-[node name="Enemy3" type="Area2D" parent="." unique_id=1279805559 groups=["Enemy"]]
-position = Vector2(384, 0)
-script = ExtResource("7_u5sy4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3" unique_id=48651669]
-shape = SubResource("RectangleShape2D_0wlwq")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy3" unique_id=1470368872]
-sprite_frames = ExtResource("6_vtaks")
-animation = &"walk"
-
-[node name="Enemy4" type="Area2D" parent="." unique_id=376378655 groups=["Enemy"]]
-position = Vector2(512, 0)
-script = ExtResource("7_u5sy4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4" unique_id=1051849259]
-shape = SubResource("RectangleShape2D_0wlwq")
-disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy4" unique_id=1459248905]
-sprite_frames = ExtResource("7_kvpfn")
-animation = &"walk"
-frame_progress = 0.22038873
+[node name="NPC6" parent="." unique_id=1198641887 instance=ExtResource("2_yqjtg")]

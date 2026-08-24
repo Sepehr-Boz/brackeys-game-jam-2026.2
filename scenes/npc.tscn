@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dykb72uq250po"]
+
+[ext_resource type="Script" uid="uid://cjh2g35ff4uhv" path="res://scripts/npc_controller.gd" id="1_abqhh"]
+[ext_resource type="SpriteFrames" uid="uid://c0r34ei7vgv3n" path="res://animations/character_beige.tres" id="2_4wlns"]
+[ext_resource type="SpriteFrames" uid="uid://wn66hd4sjtuq" path="res://animations/character_pink.tres" id="2_rv78h"]
+[ext_resource type="SpriteFrames" uid="uid://tmklteewxqpg" path="res://animations/character_purple.tres" id="4_tl2vt"]
+[ext_resource type="SpriteFrames" uid="uid://bf01k3j56ouun" path="res://animations/character_yellow.tres" id="5_hwkja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wlwq"]
+size = Vector2(128, 128)
+
+[node name="NPC" type="Area2D" unique_id=1525424875 groups=["Enemy"]]
+script = ExtResource("1_abqhh")
+_walk_speed = 200.0
+_animations = Array[SpriteFrames]([ExtResource("2_4wlns"), ExtResource("2_rv78h"), ExtResource("4_tl2vt"), ExtResource("5_hwkja")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1093622198]
+shape = SubResource("RectangleShape2D_0wlwq")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=822625719]
+sprite_frames = ExtResource("2_rv78h")
+animation = &"walk"
