@@ -37,6 +37,8 @@ func _on_timer_up() -> void:
 	bullet.shoot(position, GameManager.player.position)
 
 func _on_player_hit() -> void:
+	# wait a random amount of bit so that all the enemies dance at slightly different times
+	await get_tree().create_timer(_rng.randf_range(0.0, 1.0)).timeout
 	velocity = Vector2.ZERO
 	_sprite.animation = "victory"
 	_sprite.flip_h = _rng.randi_range(0, 1) == 1

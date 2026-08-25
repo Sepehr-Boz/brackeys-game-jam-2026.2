@@ -25,4 +25,4 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1734557559]
 sprite_frames = ExtResource("2_4ra3w")
-animation = &"walk"
+animation = &"victory"
