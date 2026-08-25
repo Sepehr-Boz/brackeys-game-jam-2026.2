@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node
 # THIS IS A SINGLETON SCRIPT THAT WILL BE ACCESSED THROUGH GameManager
 
@@ -24,9 +25,14 @@ var _time_remaining: float = LEVEL_TIME
 var _waiting_for_player_check: bool = false
 var _num_bullets_missed: int = 0
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
+static var instance: GameManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if instance != null and instance != self:
+		queue_free()
+	else:
+		instance = self
 	# connect the needed signals to know when to increment the level
 	player_safe.connect(_increment_level)
 	player_hit.connect(_load_game_over)

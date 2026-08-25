@@ -10,8 +10,8 @@ var velocity: Vector2
 var _can_control: bool = true
 
 func _ready() -> void:
-	GameManager.player_hit.connect(_lost_level)
-	GameManager.player_safe.connect(_won_level)
+	GameManager.instance.player_hit.connect(_lost_level)
+	GameManager.instance.player_safe.connect(_won_level)
 	
 	_sprite.play()
 
