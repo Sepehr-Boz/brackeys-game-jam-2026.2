@@ -2,6 +2,7 @@ class_name EnemyController2D
 extends NPCController2D
 
 var _bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+var _is_dancing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +11,11 @@ func _ready() -> void:
 	# make the enemy face towards the player and shoot
 	GameManager.time_up.connect(_on_timer_up)
 	GameManager.player_hit.connect(_on_player_hit)
+
+func _process(delta: float) -> void:
+	if _is_dancing:
+		return
+	super._process(delta)
 
 func _on_timer_up() -> void:
 	velocity = Vector2.ZERO
@@ -23,3 +29,4 @@ func _on_player_hit() -> void:
 	velocity = Vector2.ZERO
 	_sprite.animation = "victory"
 	_sprite.flip_h = _rng.randi_range(0, 1) == 1
+	_is_dancing = true
