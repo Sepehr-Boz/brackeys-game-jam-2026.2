@@ -8,7 +8,7 @@ signal time_left(time_remaining: float) # how much time is left
 signal time_up() # when the time for the level finished
 signal player_hit() # when the player has been hit at the end of the level
 signal player_safe() # when the player has not been hit at the end of the level
-signal level_started() # when the level has been started
+signal level_started(level_num: int) # when the level has been started
 signal bullet_missed() # when the bullet hits/goes out of bounds it means that it has
 	# missed the player
 
@@ -68,7 +68,7 @@ func _load_level() -> void:
 	player = _player_scene.instantiate()
 	player.position = _vp.get_center()
 	add_child(player)
-	level_started.emit()
+	level_started.emit(_level_num)
 	_time_remaining = LEVEL_TIME
 	time_left.emit(_time_remaining)
 

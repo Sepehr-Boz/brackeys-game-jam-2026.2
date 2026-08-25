@@ -1,6 +1,56 @@
 [gd_scene format=3 uid="uid://x6fubc7jrr8s"]
 
+[ext_resource type="Script" uid="uid://bn8hy33mir6ls" path="res://scripts/level_timer.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://b25kmxkdg1she" path="res://scripts/level_number.gd" id="1_yqjtg"]
+
 [node name="Node2D" type="Node2D" unique_id=809113781]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2100240362]
 anchor_mode = 0
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1150779113]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=130521336]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.4745098, 0.050980393, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=853351566]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Background/VBoxContainer" unique_id=1265390015]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2509804)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 8
+bbcode_enabled = true
+text = "[p align=c][color=ffffffaa][font_size=64][lb]Level 1[rb][/font_size][/color][/p]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_yqjtg")
+
+[node name="Label2" type="RichTextLabel" parent="Background/VBoxContainer" unique_id=965777033]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2509804)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 8
+bbcode_enabled = true
+text = "[p align=c][color=ffffffaa]
+[b][font_size=192]10.0[/font_size][/b][/color][/p]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_uwrxv")
