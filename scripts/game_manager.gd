@@ -23,6 +23,7 @@ var _enemies: Array[EnemyController2D] = []
 var _time_remaining: float = LEVEL_TIME
 var _waiting_for_player_check: bool = false
 var _num_bullets_missed: int = 0
+@onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,9 +31,6 @@ func _ready() -> void:
 	player_safe.connect(_increment_level)
 	player_hit.connect(_load_game_over)
 	bullet_missed.connect(_on_bullet_miss)
-	# on start spawn in the player and the initial number of enemies
-	player = _player_scene.instantiate()
-	add_child(player)
 	_load_level()
 
 func _process(delta: float) -> void:
@@ -50,6 +48,7 @@ func _unload_npcs() -> void:
 		npc.free()
 	for enemy: EnemyController2D in _enemies:
 		enemy.free()
+	player.free()
 	_npcs.clear()
 	_enemies.clear()
 	_waiting_for_player_check = false
@@ -65,11 +64,17 @@ func _load_level() -> void:
 			var npc: NPCController2D = _npc_scene.instantiate()
 			add_child(npc)
 			_npcs.append(npc)
+	# on start spawn in the player and the initial number of enemies
+	player = _player_scene.instantiate()
+	player.position = _vp.get_center()
+	add_child(player)
 	level_started.emit()
 	_time_remaining = LEVEL_TIME
 	time_left.emit(_time_remaining)
 
 func _increment_level() -> void:
+	# wait for x seconds before transitioning to the next level
+	await get_tree().create_timer(2.0).timeout
 	_level_num += 1
 	_unload_npcs()
 	_load_level()
