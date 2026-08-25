@@ -12,10 +12,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += velocity * _speed * delta
 	# if out of bounds then communicate that it has missed the player
-	if position.x <= _vp.position.x or position.x >= _vp.end.x:
-		pass
-	elif position.y <= _vp.position.y or position.y >= _vp.end.y:
-		pass
+	if position.x <= _vp.position.x or position.x >= _vp.end.x or position.y <= _vp.position.y or position.y >= _vp.end.y:
+		GameManager.bullet_missed.emit()
+		self.queue_free()
 
 func shoot(from: Vector2, at: Vector2) -> void:
 	position = from

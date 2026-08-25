@@ -9,6 +9,8 @@ signal time_up() # when the time for the level finished
 signal player_hit() # when the player has been hit at the end of the level
 signal player_safe() # when the player has not been hit at the end of the level
 signal level_started() # when the level has been started
+signal bullet_missed() # when the bullet hits/goes out of bounds it means that it has
+	# missed the player
 
 var _player_scene: PackedScene = preload("res://scenes/player.tscn")
 var _npc_scene: PackedScene = preload("res://scenes/npc.tscn")
@@ -20,12 +22,14 @@ var _npcs: Array[NPCController2D] = []
 var _enemies: Array[EnemyController2D] = []
 var _time_remaining: float = LEVEL_TIME
 var _waiting_for_player_check: bool = false
+var _num_bullets_missed: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# connect the needed signals to know when to increment the level
 	player_safe.connect(_increment_level)
 	player_hit.connect(_load_game_over)
+	bullet_missed.connect(_on_bullet_miss)
 	# on start spawn in the player and the initial number of enemies
 	player = _player_scene.instantiate()
 	add_child(player)
@@ -48,6 +52,8 @@ func _unload_npcs() -> void:
 		enemy.free()
 	_npcs.clear()
 	_enemies.clear()
+	_waiting_for_player_check = false
+	_num_bullets_missed = 0
 
 func _load_level() -> void:
 	for i in _level_num:
@@ -67,8 +73,12 @@ func _increment_level() -> void:
 	_level_num += 1
 	_unload_npcs()
 	_load_level()
-	_waiting_for_player_check = false
 
 func _load_game_over() -> void:
 	print("game lose")
 	# TODO: open a game over menu that will allow the player to restart
+	
+func _on_bullet_miss() -> void:
+	_num_bullets_missed += 1
+	if _num_bullets_missed >= len(_enemies):
+		player_safe.emit()
