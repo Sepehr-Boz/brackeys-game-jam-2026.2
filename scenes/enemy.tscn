@@ -11,6 +11,10 @@ size = Vector2(128, 128)
 
 [node name="Enemy" type="Area2D" unique_id=265240007 groups=["Enemy"]]
 script = ExtResource("1_md0e3")
+_indicator_initial_color = Color(1, 0, 0, 0.0627451)
+_indicator_final_color = Color(1, 0, 0, 1)
+_indicator_final_scale = Vector2(5, 5)
+_indicator_scale_duration = 2.0
 _walk_speed = 200.0
 _animations = Array[SpriteFrames]([ExtResource("2_c4w8v"), ExtResource("2_4ra3w"), ExtResource("4_xwavj"), ExtResource("5_nenq2")])
 metadata/_custom_type_script = "uid://dvrhrj8qjypld"
