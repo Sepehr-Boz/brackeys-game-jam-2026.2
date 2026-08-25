@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bp1exlmrjgc8g"]
+
+[ext_resource type="Script" uid="uid://dvrhrj8qjypld" path="res://scripts/enemy_controller.gd" id="1_md0e3"]
+[ext_resource type="SpriteFrames" uid="uid://wn66hd4sjtuq" path="res://animations/character_pink.tres" id="2_4ra3w"]
+[ext_resource type="SpriteFrames" uid="uid://c0r34ei7vgv3n" path="res://animations/character_beige.tres" id="2_c4w8v"]
+[ext_resource type="SpriteFrames" uid="uid://tmklteewxqpg" path="res://animations/character_purple.tres" id="4_xwavj"]
+[ext_resource type="SpriteFrames" uid="uid://bf01k3j56ouun" path="res://animations/character_yellow.tres" id="5_nenq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="Area2D" unique_id=265240007 groups=["Enemy"]]
+script = ExtResource("1_md0e3")
+_indicator_initial_color = Color(1, 0, 0, 0.0627451)
+_indicator_final_color = Color(1, 0, 0, 1)
+_indicator_final_scale = Vector2(5, 5)
+_indicator_scale_duration = 2.0
+_walk_speed = 200.0
+_animations = Array[SpriteFrames]([ExtResource("2_c4w8v"), ExtResource("2_4ra3w"), ExtResource("4_xwavj"), ExtResource("5_nenq2")])
+metadata/_custom_type_script = "uid://dvrhrj8qjypld"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1004895780]
+shape = SubResource("RectangleShape2D_iywne")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1734557559]
+sprite_frames = ExtResource("2_4ra3w")
+animation = &"victory"
