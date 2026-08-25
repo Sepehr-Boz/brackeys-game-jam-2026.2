@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-const STRING_FORMAT: String = "[p align=c][color=ffffffaa][b][font_size=192]%.1f[/font_size][/b][/color][/p]"
+const STRING_FORMAT: String = "[p align=c][color=ffffffff][b][font_size=192]%.1f[/font_size][/b][/color][/p]"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

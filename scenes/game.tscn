@@ -1,7 +1,31 @@
-[gd_scene format=3 uid="uid://x6fubc7jrr8s"]
+[gd_scene format=4 uid="uid://x6fubc7jrr8s"]
 
+[ext_resource type="Texture2D" uid="uid://suqvvyvc61wr" path="res://textures/bush.png" id="1_u5sy4"]
 [ext_resource type="Script" uid="uid://bn8hy33mir6ls" path="res://scripts/level_timer.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://b25kmxkdg1she" path="res://scripts/level_number.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="2_gee14"]
+[ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="3_0tnpc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dinhu"]
+texture = ExtResource("1_u5sy4")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvuet"]
+texture = ExtResource("2_gee14")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trtic"]
+texture = ExtResource("3_0tnpc")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e5wnf"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_dinhu")
+sources/1 = SubResource("TileSetAtlasSource_kvuet")
+sources/2 = SubResource("TileSetAtlasSource_trtic")
 
 [node name="Node2D" type="Node2D" unique_id=809113781]
 
@@ -17,7 +41,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.09019608, 0.4745098, 0.050980393, 1)
+color = Color(0.17254902, 0.7882353, 0.5294118, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background" unique_id=450899176]
+tile_map_data = PackedByteArray("AAATAAkAAgAAAAAAAAATAAAAAgAAAAAAAAATAP//AgAAAAAAAAASAP//AgAAAAAAAAABAP//AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAoAAgAAAAAAAAATAAoAAgAAAAAAAAASAAoAAgAAAAAAAAADAAAAAQAAAAAAAAAEAP//AAAAAAAAAAAQAAAAAQAAAAAAAAAPAP//AAAAAAAAAAANAAAAAAAAAAAAAAAMAAAAAgAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAgAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAADAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAIAP//AAAAAAAAAAALAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_e5wnf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=853351566]
 anchors_preset = 15
@@ -34,7 +62,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2509804)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 8
 bbcode_enabled = true
-text = "[p align=c][color=ffffffaa][font_size=64][lb]Level 1[rb][/font_size][/color][/p]"
+text = "[p align=c][color=ffffffff][font_size=64][lb]Level 1[rb][/font_size][/color][/p]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
@@ -47,8 +75,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2509804)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 8
 bbcode_enabled = true
-text = "[p align=c][color=ffffffaa]
-[b][font_size=192]10.0[/font_size][/b][/color][/p]"
+text = "[p align=c][color=ffffffff][b][font_size=192]10.0[/font_size][/b][/color][/p]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
