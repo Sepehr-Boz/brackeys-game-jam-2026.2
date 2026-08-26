@@ -9,6 +9,7 @@ radius = 32.0
 [node name="Bullet" type="Area2D" unique_id=1645636868 groups=["Bullet"]]
 input_pickable = false
 script = ExtResource("1_y25gk")
+_speed = 800.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2000536381]
 shape = SubResource("CircleShape2D_0wlwq")
