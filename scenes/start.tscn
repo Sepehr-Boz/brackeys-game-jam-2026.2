@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7w1ahrerkjbc" path="res://scripts/start_menu.gd" id="1_kdmts"]
 [ext_resource type="Texture2D" uid="uid://suqvvyvc61wr" path="res://textures/bush.png" id="2_0auqf"]
-[ext_resource type="Shader" uid="uid://dnkwfcsrmcv7h" path="res://shaders/wavy.gdshader" id="3_0auqf"]
+[ext_resource type="Shader" uid="uid://dnkwfcsrmcv7h" path="res://shaders/wind_sway.gdshader" id="3_0auqf"]
 [ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="3_y16t7"]
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="4_4ge6i"]
 
