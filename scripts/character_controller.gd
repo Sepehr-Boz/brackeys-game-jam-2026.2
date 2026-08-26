@@ -5,6 +5,8 @@ extends Area2D
 @export var _run_speed: float = 600
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
+@onready var _victory_particles: CPUParticles2D = $"Win Particles"
+@onready var _shot_particles: CPUParticles2D = $"Lose Particles"
 var _is_sprinting: bool = false
 var velocity: Vector2
 var _can_control: bool = true
@@ -53,8 +55,10 @@ func _lost_level() -> void:
 	velocity = Vector2.ZERO
 	_can_control = false
 	_sprite.animation = "hit"
+	_shot_particles.emitting = true
 
 func _won_level() -> void:
 	velocity = Vector2.ZERO
 	_can_control = false
 	_sprite.animation = "victory"
+	_victory_particles.emitting = true
