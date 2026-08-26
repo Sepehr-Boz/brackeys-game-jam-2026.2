@@ -19,9 +19,9 @@ func _ready() -> void:
 	_time_when_indicate = _rng.randf_range(GameManager.LEVEL_TIME / 5, GameManager.LEVEL_TIME / 1.5)
 	# connect to the time up signal in game manager and when it emits then
 	# make the enemy face towards the player and shoot
-	GameManager.time_up.connect(_on_timer_up)
-	GameManager.player_hit.connect(_on_player_hit)
-	GameManager.time_left.connect(_on_time_decreased)
+	GameManager.instance.time_up.connect(_on_timer_up)
+	GameManager.instance.player_hit.connect(_on_player_hit)
+	GameManager.instance.time_left.connect(_on_time_decreased)
 
 func _process(delta: float) -> void:
 	if _is_dancing:

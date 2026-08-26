@@ -1,0 +1,103 @@
+[gd_scene format=4 uid="uid://bl7bc3gsvdtva"]
+
+[ext_resource type="Script" uid="uid://7w1ahrerkjbc" path="res://scripts/start_menu.gd" id="1_kdmts"]
+[ext_resource type="Texture2D" uid="uid://suqvvyvc61wr" path="res://textures/bush.png" id="2_0auqf"]
+[ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="3_y16t7"]
+[ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="4_4ge6i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dinhu"]
+texture = ExtResource("2_0auqf")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvuet"]
+texture = ExtResource("3_y16t7")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trtic"]
+texture = ExtResource("4_4ge6i")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e5wnf"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_dinhu")
+sources/1 = SubResource("TileSetAtlasSource_kvuet")
+sources/2 = SubResource("TileSetAtlasSource_trtic")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdmts"]
+bg_color = Color(0.16470589, 0.68235296, 0.78431374, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82606, 0.82606006, 0.82606, 1)
+shadow_size = 2
+shadow_offset = Vector2(0, 8)
+
+[node name="Node2D" type="Node2D" unique_id=125838974]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1798045738]
+anchor_mode = 0
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1514365821]
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=129536013]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.7882353, 0.5294118, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background" unique_id=263928774]
+tile_map_data = PackedByteArray("AAATAAkAAgAAAAAAAAATAAAAAgAAAAAAAAATAP//AgAAAAAAAAASAP//AgAAAAAAAAABAP//AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAoAAgAAAAAAAAATAAoAAgAAAAAAAAASAAoAAgAAAAAAAAADAAAAAQAAAAAAAAAEAP//AAAAAAAAAAAQAAAAAQAAAAAAAAAPAP//AAAAAAAAAAANAAAAAAAAAAAAAAAMAAAAAgAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAgAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAADAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAIAP//AAAAAAAAAAALAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_e5wnf")
+
+[node name="Start Menu" type="CanvasLayer" parent="." unique_id=689959751]
+script = ExtResource("1_kdmts")
+
+[node name="MarginContainer" type="MarginContainer" parent="Start Menu" unique_id=1105097645]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 384
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 384
+theme_override_constants/margin_bottom = 128
+
+[node name="ColorRect" type="ColorRect" parent="Start Menu/MarginContainer" unique_id=961668725]
+layout_mode = 2
+color = Color(0.023529412, 0.19215687, 0.11764706, 0.5019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="Start Menu/MarginContainer" unique_id=752274005]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start Menu/MarginContainer/MarginContainer" unique_id=1832018004]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Play Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=1894299431]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
+text = "Play"
+
+[node name="Quit Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=735851741]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
+text = "Quit"
+
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
