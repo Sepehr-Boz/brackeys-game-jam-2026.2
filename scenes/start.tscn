@@ -26,6 +26,16 @@ sources/0 = SubResource("TileSetAtlasSource_dinhu")
 sources/1 = SubResource("TileSetAtlasSource_kvuet")
 sources/2 = SubResource("TileSetAtlasSource_trtic")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdmts"]
+bg_color = Color(0.16470589, 0.68235296, 0.78431374, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82606, 0.82606006, 0.82606, 1)
+shadow_size = 2
+shadow_offset = Vector2(0, 8)
+
 [node name="Node2D" type="Node2D" unique_id=125838974]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1798045738]
@@ -55,24 +65,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 384
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 384
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_bottom = 128
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Start Menu/MarginContainer" unique_id=1832018004]
+[node name="ColorRect" type="ColorRect" parent="Start Menu/MarginContainer" unique_id=961668725]
 layout_mode = 2
-theme_override_constants/separation = 16
+color = Color(0.023529412, 0.19215687, 0.11764706, 0.5019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="Start Menu/MarginContainer" unique_id=752274005]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start Menu/MarginContainer/MarginContainer" unique_id=1832018004]
+layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Play Button" type="Button" parent="Start Menu/MarginContainer/VBoxContainer" unique_id=1894299431]
+[node name="Play Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=1894299431]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Play"
 
-[node name="Quit Button" type="Button" parent="Start Menu/MarginContainer/VBoxContainer" unique_id=735851741]
+[node name="Quit Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=735851741]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Quit"
 
-[connection signal="pressed" from="Start Menu/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
-[connection signal="pressed" from="Start Menu/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]

@@ -29,7 +29,17 @@ sources/0 = SubResource("TileSetAtlasSource_dinhu")
 sources/1 = SubResource("TileSetAtlasSource_kvuet")
 sources/2 = SubResource("TileSetAtlasSource_trtic")
 
-[node name="Node2D" type="Node2D" unique_id=809113781]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdmts"]
+bg_color = Color(0.16470589, 0.68235296, 0.78431374, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82606, 0.82606006, 0.82606, 1)
+shadow_size = 2
+shadow_offset = Vector2(0, 8)
+
+[node name="Node2D2" type="Node2D" unique_id=809113781]
 
 [node name="Game Manager" type="Node" parent="." unique_id=770979257]
 script = ExtResource("1_p57ef")
@@ -97,30 +107,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 384
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 384
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_bottom = 128
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause Menu/MarginContainer" unique_id=1108406674]
+[node name="ColorRect" type="ColorRect" parent="Pause Menu/MarginContainer" unique_id=1009937599]
 layout_mode = 2
-theme_override_constants/separation = 16
+color = Color(0.023529412, 0.19215687, 0.11764706, 0.5019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause Menu/MarginContainer" unique_id=1638525020]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause Menu/MarginContainer/MarginContainer" unique_id=1108406674]
+layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Continue Button" type="Button" parent="Pause Menu/MarginContainer/VBoxContainer" unique_id=1091264191]
+[node name="Continue Button" type="Button" parent="Pause Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=1091264191]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Continue"
 
-[node name="Reset Button" type="Button" parent="Pause Menu/MarginContainer/VBoxContainer" unique_id=656330497]
+[node name="Reset Button" type="Button" parent="Pause Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=656330497]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Reset"
 
-[node name="Quit Button" type="Button" parent="Pause Menu/MarginContainer/VBoxContainer" unique_id=642025491]
+[node name="Quit Button" type="Button" parent="Pause Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=642025491]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Quit Button"
 
-[connection signal="pressed" from="Pause Menu/MarginContainer/VBoxContainer/Continue Button" to="Pause Menu" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="Pause Menu/MarginContainer/VBoxContainer/Reset Button" to="Pause Menu" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="Pause Menu/MarginContainer/VBoxContainer/Quit Button" to="Pause Menu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pause Menu/MarginContainer/MarginContainer/VBoxContainer/Continue Button" to="Pause Menu" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Pause Menu/MarginContainer/MarginContainer/VBoxContainer/Reset Button" to="Pause Menu" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Pause Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Pause Menu" method="_on_quit_button_pressed"]
