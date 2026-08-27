@@ -37,7 +37,6 @@ func _ready() -> void:
 		instance = self
 	# connect the needed signals to know when to increment the level
 	player_safe.connect(_increment_level)
-	player_hit.connect(_load_game_over)
 	bullet_missed.connect(_on_bullet_miss)
 	_load_level()
 	
@@ -103,10 +102,6 @@ func _increment_level() -> void:
 	await tween.finished
 	_is_loading = false
 
-func _load_game_over() -> void:
-	print("game lose")
-	# TODO: open a game over menu that will allow the player to restart
-	
 func _on_bullet_miss() -> void:
 	_num_bullets_missed += 1
 	if _num_bullets_missed >= len(_enemies):
