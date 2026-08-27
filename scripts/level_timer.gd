@@ -7,13 +7,14 @@ const WARN_FORMAT: String = "[p align=c][b][font_size=204][shake rate=20.0 level
 # == 0 seconds
 const FINAL_STRING: String = "[p align=c][b][font_size=204]0.0[/font_size][/b][/p]"
 @export var _warning_gradient: Gradient # the color gradient change as it goes from 5 to 0
+@onready var _tick_audio: AudioStreamPlayer = $ImpactSoftHeavy004
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.instance.time_left.connect(_on_time_remaining_updated)
 
 func _on_time_remaining_updated(time_remaining: float) -> void:
-	if time_remaining > 5.0:
+	if time_remaining >= 5.1:
 		modulate = Color.WHITE
 		text = BASE_FORMAT % clampf(time_remaining, 0.0, GameManager.LEVEL_TIME)
 	elif time_remaining > 0:
@@ -21,6 +22,8 @@ func _on_time_remaining_updated(time_remaining: float) -> void:
 		# also 'shake' the text by scaling up and down continuously to draw attention
 		modulate = _warning_gradient.sample(inverse_lerp(5.0, 0, time_remaining))
 		text = WARN_FORMAT % clampf(time_remaining, 0.0, GameManager.LEVEL_TIME)
+		if not _tick_audio.playing and str(int(time_remaining * 10))[-1] == "0":
+			_tick_audio.play()
 	else:
 		text = FINAL_STRING
 		var tween: Tween = get_tree().create_tween()

@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://dnkwfcsrmcv7h" path="res://shaders/wind_sway.gdshader" id="3_0auqf"]
 [ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="3_y16t7"]
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="4_4ge6i"]
+[ext_resource type="AudioStream" uid="uid://dcbu8g7dmsc38" path="res://audio/click2.ogg" id="6_y16t7"]
 
 [sub_resource type="Shader" id="Shader_gee14"]
 code = "// original wind shader from https://github.com/Maujoe/godot-simple-wind-shader-2d/tree/master/assets/maujoe.simple_wind_shader_2d
@@ -228,6 +229,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Start Menu" unique_id=272718675]
+stream = ExtResource("6_y16t7")
 
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
