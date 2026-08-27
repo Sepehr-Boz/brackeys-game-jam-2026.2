@@ -14,6 +14,7 @@ extends Area2D
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
 @onready var _victory_particles: CPUParticles2D = $"Win Particles"
 @onready var _shot_particles: CPUParticles2D = $"Lose Particles"
+@onready var _hit_audio: AudioStreamPlayer = $AudioStreamPlayer
 
 
 var _is_sprinting: bool = false
@@ -81,10 +82,16 @@ func _lost_level() -> void:
 				inverse_lerp(0, time_per_bounce, time_on_bounce) * 180)
 			)) * (_bounce_height * pow(_bounce_height_falloff, time_passed / time_per_bounce))
 		)
+		if is_zero_approx(time_on_bounce):
+			_hit_audio.play()
+			_hit_audio.volume_db -= 1.0
 		position = initial_position + offset
 		delta = get_process_delta_time()
 		time_passed += delta
 		await get_tree().create_timer(delta).timeout
+	# final land from bouncing
+	_hit_audio.play()
+	_hit_audio.volume_db -= 1.0
 
 func _won_level() -> void:
 	velocity = Vector2.ZERO
