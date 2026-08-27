@@ -255,13 +255,6 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Controls"
 
-[node name="Quit Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=735851741]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
-text = "Quit"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Start Menu" unique_id=272718675]
 stream = ExtResource("6_y16t7")
 
@@ -412,6 +405,5 @@ stream = ExtResource("6_y16t7")
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Tutorial Button" to="Start Menu" method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Controls Button" to="Start Menu" method="_on_controls_button_pressed"]
-[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Controls Panel/MarginContainer/Return Button" to="Controls Panel" method="_on_return_button_pressed"]
 [connection signal="pressed" from="Tutorial Panel/MarginContainer/Return Button" to="Tutorial Panel" method="_on_return_button_pressed"]

@@ -22,8 +22,3 @@ func _on_controls_button_pressed() -> void:
 	await _click_audio.finished
 	_controls_panel.visible = true
 	visible = false
-
-func _on_quit_button_pressed() -> void:
-	_click_audio.play()
-	await _click_audio.finished
-	get_tree().quit()
