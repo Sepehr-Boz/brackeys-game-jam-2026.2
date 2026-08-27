@@ -18,7 +18,7 @@ func _on_pause_pressed() -> void:
 	visible = true
 
 func _on_game_over() -> void:
-	_on_pause_pressed()
+	visible = true
 	_continue_button.visible = false
 
 func _on_continue_button_pressed() -> void:
