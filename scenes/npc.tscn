@@ -11,7 +11,7 @@ size = Vector2(76, 96)
 
 [node name="NPC" type="Area2D" unique_id=1525424875 groups=["Enemy"]]
 script = ExtResource("1_abqhh")
-_walk_speed = 200.0
+_walk_speed = 150.0
 _animations = Array[SpriteFrames]([ExtResource("2_4wlns"), ExtResource("2_rv78h"), ExtResource("4_tl2vt"), ExtResource("5_hwkja")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1093622198]
