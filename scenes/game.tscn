@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b25kmxkdg1she" path="res://scripts/level_number.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="2_gee14"]
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="3_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://2begrqj0mr2f" path="res://audio/impactSoft_heavy_004.ogg" id="7_0tnpc"]
 [ext_resource type="Script" uid="uid://uts55yv0lpvq" path="res://scripts/pause_menu.gd" id="7_u5sy4"]
 [ext_resource type="AudioStream" uid="uid://dcbu8g7dmsc38" path="res://audio/click2.ogg" id="8_gee14"]
 
@@ -288,6 +289,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_uwrxv")
 _warning_gradient = SubResource("Gradient_vtaks")
+
+[node name="ImpactSoftHeavy004" type="AudioStreamPlayer" parent="Background/VBoxContainer/Label2" unique_id=1929840843]
+stream = ExtResource("7_0tnpc")
+volume_db = -10.0
 
 [node name="Pause Menu" type="CanvasLayer" parent="." unique_id=668091959]
 visible = false
