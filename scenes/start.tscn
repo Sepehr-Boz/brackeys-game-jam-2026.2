@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="3_y16t7"]
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="4_4ge6i"]
 [ext_resource type="AudioStream" uid="uid://dcbu8g7dmsc38" path="res://audio/click2.ogg" id="6_y16t7"]
+[ext_resource type="Script" uid="uid://b6hlnhhcirk1e" path="res://scripts/controls_panel.gd" id="7_1nvso"]
+[ext_resource type="Texture2D" uid="uid://dw8dky7a77smi" path="res://textures/keyboard_arrow_left.png" id="7_pgjjs"]
+[ext_resource type="Texture2D" uid="uid://drsope2ucb13y" path="res://textures/keyboard_arrows.png" id="9_gsp51"]
+[ext_resource type="Texture2D" uid="uid://dyua7waun7ng2" path="res://textures/keyboard_shift.png" id="10_r8uic"]
+[ext_resource type="Texture2D" uid="uid://dda6bno0jg0ok" path="res://textures/keyboard_escape.png" id="11_x1pfr"]
 
 [sub_resource type="Shader" id="Shader_gee14"]
 code = "// original wind shader from https://github.com/Maujoe/godot-simple-wind-shader-2d/tree/master/assets/maujoe.simple_wind_shader_2d
@@ -167,6 +172,13 @@ border_color = Color(0.82606, 0.82606006, 0.82606, 1)
 shadow_size = 2
 shadow_offset = Vector2(0, 8)
 
+[sub_resource type="LabelSettings" id="LabelSettings_2b3j6"]
+font_size = 48
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwqr5"]
+font_size = 32
+
 [node name="Node2D" type="Node2D" unique_id=125838974]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1798045738]
@@ -186,8 +198,9 @@ color = Color(0.17254902, 0.7882353, 0.5294118, 1)
 tile_map_data = PackedByteArray("AAATAAkAAgAAAAAAAAATAAAAAgAAAAAAAAATAP//AgAAAAAAAAASAP//AgAAAAAAAAABAP//AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAoAAgAAAAAAAAATAAoAAgAAAAAAAAASAAoAAgAAAAAAAAADAAAAAQAAAAAAAAAEAP//AAAAAAAAAAAQAAAAAQAAAAAAAAAPAP//AAAAAAAAAAANAAAAAAAAAAAAAAAMAAAAAgAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAgAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAADAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAIAP//AAAAAAAAAAALAP//AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_tn317")
 
-[node name="Start Menu" type="CanvasLayer" parent="." unique_id=689959751]
+[node name="Start Menu" type="CanvasLayer" parent="." unique_id=689959751 node_paths=PackedStringArray("_controls_panel")]
 script = ExtResource("1_kdmts")
+_controls_panel = NodePath("../Controls Panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="Start Menu" unique_id=1105097645]
 anchors_preset = 15
@@ -223,6 +236,13 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Play"
 
+[node name="Controls Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=1358671170]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
+text = "Controls"
+
 [node name="Quit Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=735851741]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -233,5 +253,91 @@ text = "Quit"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Start Menu" unique_id=272718675]
 stream = ExtResource("6_y16t7")
 
+[node name="Controls Panel" type="CanvasLayer" parent="." unique_id=1639308 node_paths=PackedStringArray("_start_menu")]
+visible = false
+script = ExtResource("7_1nvso")
+_start_menu = NodePath("../Start Menu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls Panel" unique_id=692945959]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 384
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 384
+theme_override_constants/margin_bottom = 128
+
+[node name="ColorRect" type="ColorRect" parent="Controls Panel/MarginContainer" unique_id=52218546]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.023529412, 0.19215687, 0.11764706, 0.5019608)
+
+[node name="Return Button" type="Button" parent="Controls Panel/MarginContainer" unique_id=1035130628]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("7_pgjjs")
+flat = true
+
+[node name="Label" type="Label" parent="Controls Panel/MarginContainer" unique_id=288122784]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Controls"
+label_settings = SubResource("LabelSettings_2b3j6")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls Panel/MarginContainer" unique_id=1089162410]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 0
+
+[node name="GridContainer" type="GridContainer" parent="Controls Panel/MarginContainer/MarginContainer" unique_id=2088043436]
+layout_mode = 2
+theme_override_constants/h_separation = 192
+columns = 2
+
+[node name="Label" type="Label" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=1261539633]
+layout_mode = 2
+text = "WASD"
+label_settings = SubResource("LabelSettings_lwqr5")
+
+[node name="TextureRect" type="TextureRect" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=260516680]
+layout_mode = 2
+texture = ExtResource("9_gsp51")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=79523580]
+layout_mode = 2
+text = "Sprint"
+label_settings = SubResource("LabelSettings_lwqr5")
+
+[node name="TextureRect2" type="TextureRect" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=669744659]
+layout_mode = 2
+texture = ExtResource("10_r8uic")
+stretch_mode = 3
+
+[node name="Label3" type="Label" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=138705801]
+layout_mode = 2
+text = "Pause Game"
+label_settings = SubResource("LabelSettings_lwqr5")
+
+[node name="TextureRect3" type="TextureRect" parent="Controls Panel/MarginContainer/MarginContainer/GridContainer" unique_id=325492435]
+layout_mode = 2
+texture = ExtResource("11_x1pfr")
+stretch_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Controls Panel" unique_id=670680770]
+stream = ExtResource("6_y16t7")
+
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Controls Button" to="Start Menu" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Controls Panel/MarginContainer/Return Button" to="Controls Panel" method="_on_return_button_pressed"]
