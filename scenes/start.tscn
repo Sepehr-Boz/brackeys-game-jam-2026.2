@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://drsope2ucb13y" path="res://textures/keyboard_arrows.png" id="9_gsp51"]
 [ext_resource type="Texture2D" uid="uid://dyua7waun7ng2" path="res://textures/keyboard_shift.png" id="10_r8uic"]
 [ext_resource type="Texture2D" uid="uid://dda6bno0jg0ok" path="res://textures/keyboard_escape.png" id="11_x1pfr"]
+[ext_resource type="Script" uid="uid://cw6lah078b5po" path="res://scripts/tutorial_panel.gd" id="12_1nvso"]
 
 [sub_resource type="Shader" id="Shader_gee14"]
 code = "// original wind shader from https://github.com/Maujoe/godot-simple-wind-shader-2d/tree/master/assets/maujoe.simple_wind_shader_2d
@@ -179,6 +180,9 @@ outline_size = 2
 [sub_resource type="LabelSettings" id="LabelSettings_lwqr5"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_hiqac"]
+font_size = 24
+
 [node name="Node2D" type="Node2D" unique_id=125838974]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1798045738]
@@ -198,9 +202,10 @@ color = Color(0.17254902, 0.7882353, 0.5294118, 1)
 tile_map_data = PackedByteArray("AAATAAkAAgAAAAAAAAATAAAAAgAAAAAAAAATAP//AgAAAAAAAAASAP//AgAAAAAAAAABAP//AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAoAAgAAAAAAAAATAAoAAgAAAAAAAAASAAoAAgAAAAAAAAADAAAAAQAAAAAAAAAEAP//AAAAAAAAAAAQAAAAAQAAAAAAAAAPAP//AAAAAAAAAAANAAAAAAAAAAAAAAAMAAAAAgAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAgAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAADAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAIAP//AAAAAAAAAAALAP//AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_tn317")
 
-[node name="Start Menu" type="CanvasLayer" parent="." unique_id=689959751 node_paths=PackedStringArray("_controls_panel")]
+[node name="Start Menu" type="CanvasLayer" parent="." unique_id=689959751 node_paths=PackedStringArray("_controls_panel", "_tutorial_panel")]
 script = ExtResource("1_kdmts")
 _controls_panel = NodePath("../Controls Panel")
+_tutorial_panel = NodePath("../Tutorial Panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="Start Menu" unique_id=1105097645]
 anchors_preset = 15
@@ -235,6 +240,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Play"
+
+[node name="Tutorial Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=444642824]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
+text = "Tutorial"
 
 [node name="Controls Button" type="Button" parent="Start Menu/MarginContainer/MarginContainer/VBoxContainer" unique_id=1358671170]
 layout_mode = 2
@@ -337,7 +349,69 @@ stretch_mode = 3
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Controls Panel" unique_id=670680770]
 stream = ExtResource("6_y16t7")
 
+[node name="Tutorial Panel" type="CanvasLayer" parent="." unique_id=1601257987 node_paths=PackedStringArray("_start_menu")]
+visible = false
+script = ExtResource("12_1nvso")
+_start_menu = NodePath("../Start Menu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial Panel" unique_id=2042120385]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 384
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 384
+theme_override_constants/margin_bottom = 128
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial Panel/MarginContainer" unique_id=2051690005]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.023529412, 0.19215687, 0.11764706, 0.5019608)
+
+[node name="Return Button" type="Button" parent="Tutorial Panel/MarginContainer" unique_id=299823367]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("7_pgjjs")
+flat = true
+
+[node name="Label" type="Label" parent="Tutorial Panel/MarginContainer" unique_id=1773937534]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_2b3j6")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial Panel/MarginContainer" unique_id=1089642694]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 0
+
+[node name="RichTextLabel" type="Label" parent="Tutorial Panel/MarginContainer/MarginContainer" unique_id=656423239]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Begin the Game
+2. Each round has 10 seconds before the end
+3. Before the end of the round every enemy will hint at their location
+4. At the end of each round every hidden enemy will shoot at the player
+5. Attempt to dodge the shots fired!"
+label_settings = SubResource("LabelSettings_hiqac")
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Tutorial Panel" unique_id=2006553709]
+stream = ExtResource("6_y16t7")
+
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Play Button" to="Start Menu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Tutorial Button" to="Start Menu" method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Controls Button" to="Start Menu" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Start Menu/MarginContainer/MarginContainer/VBoxContainer/Quit Button" to="Start Menu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Controls Panel/MarginContainer/Return Button" to="Controls Panel" method="_on_return_button_pressed"]
+[connection signal="pressed" from="Tutorial Panel/MarginContainer/Return Button" to="Tutorial Panel" method="_on_return_button_pressed"]
