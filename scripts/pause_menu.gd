@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var _start_scene: PackedScene = load("res://scenes/start.tscn")
+@onready var _click_audio: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	visible = false
@@ -14,13 +15,19 @@ func _on_pause_pressed() -> void:
 	visible = true
 
 func _on_continue_button_pressed() -> void:
+	_click_audio.play()
+	await _click_audio.finished
 	Engine.time_scale = 1
 	visible = false
 
 func _on_reset_button_pressed() -> void:
+	_click_audio.play()
+	await _click_audio.finished
 	Engine.time_scale = 1
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed() -> void:
+	_click_audio.play()
+	await _click_audio.finished
 	Engine.time_scale = 1
 	get_tree().change_scene_to_packed(_start_scene)

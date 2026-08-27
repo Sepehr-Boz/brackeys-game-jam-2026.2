@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://iilu6e0ufdkj" path="res://textures/cactus.png" id="2_gee14"]
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="3_0tnpc"]
 [ext_resource type="Script" uid="uid://uts55yv0lpvq" path="res://scripts/pause_menu.gd" id="7_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://dcbu8g7dmsc38" path="res://audio/click2.ogg" id="8_gee14"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vtaks"]
 
@@ -339,6 +340,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kdmts")
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Pause Menu" unique_id=853214135]
+stream = ExtResource("8_gee14")
 
 [connection signal="pressed" from="Pause Menu/MarginContainer/MarginContainer/VBoxContainer/Continue Button" to="Pause Menu" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Pause Menu/MarginContainer/MarginContainer/VBoxContainer/Reset Button" to="Pause Menu" method="_on_reset_button_pressed"]
