@@ -24,7 +24,9 @@ var _enemies: Array[EnemyController2D] = []
 var _time_remaining: float = LEVEL_TIME
 var _waiting_for_player_check: bool = false
 var _num_bullets_missed: int = 0
+var _is_loading: bool = true
 @onready var _vp: Rect2 = (get_viewport().get_camera_2d().get_canvas_transform().affine_inverse() * get_viewport().get_visible_rect())
+@onready var _screen_transition: Control = $CanvasLayer/TextureRect
 static var instance: GameManager
 
 # Called when the node enters the scene tree for the first time.
@@ -38,8 +40,16 @@ func _ready() -> void:
 	player_hit.connect(_load_game_over)
 	bullet_missed.connect(_on_bullet_miss)
 	_load_level()
+	
+	_screen_transition.modulate.a = 1.0
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(_screen_transition, "modulate:a", 0.0, 0.5)
+	await tween.finished
+	_is_loading = false
 
 func _process(delta: float) -> void:
+	if _is_loading:
+		return
 	if _time_remaining <= 0:
 		if not _waiting_for_player_check:
 			time_up.emit()
@@ -79,11 +89,19 @@ func _load_level() -> void:
 	time_left.emit(_time_remaining)
 
 func _increment_level() -> void:
+	_is_loading = true
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(_screen_transition, "modulate:a", 1.0, 2.0)
+	tween.tween_property(_screen_transition, "modulate:a", 0.0, 0.5)
+	
 	# wait for x seconds before transitioning to the next level
 	await get_tree().create_timer(2.0).timeout
 	_level_num += 1
 	_unload_npcs()
 	_load_level()
+	
+	await tween.finished
+	_is_loading = false
 
 func _load_game_over() -> void:
 	print("game lose")

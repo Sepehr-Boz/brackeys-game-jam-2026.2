@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cmkooqaw1b8uq" path="res://textures/grass.png" id="3_0tnpc"]
 [ext_resource type="Script" uid="uid://uts55yv0lpvq" path="res://scripts/pause_menu.gd" id="7_u5sy4"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_vtaks"]
+
 [sub_resource type="Shader" id="Shader_gee14"]
 code = "// original wind shader from https://github.com/Maujoe/godot-simple-wind-shader-2d/tree/master/assets/maujoe.simple_wind_shader_2d
 // original script modified by HungryProton so that the assets are moving differently : https://pastebin.com/VL3AfV8D
@@ -220,6 +222,17 @@ shadow_offset = Vector2(0, 8)
 
 [node name="Game Manager" type="Node" parent="." unique_id=770979257]
 script = ExtResource("1_p57ef")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Game Manager" unique_id=1786267730]
+
+[node name="TextureRect" type="TextureRect" parent="Game Manager/CanvasLayer" unique_id=779507916]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_vtaks")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2100240362]
 anchor_mode = 0
